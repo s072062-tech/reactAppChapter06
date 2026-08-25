@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { posts } from "../data/posts"
+import CategoryTag from "../components/CategoryTag";
 
 // 記事詳細
 export default function PostDetail() {
@@ -34,10 +35,7 @@ export default function PostDetail() {
         {/* カテゴリタグ */}
         <div>
           {categories.map((categorie) => (
-            <span key={categorie} 
-            className="inline-block text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded mr-1">
-              {categorie}
-            </span>
+            <CategoryTag key={categorie} categorie={categorie} />
           ))}
         </div>
       </div>
@@ -48,8 +46,8 @@ export default function PostDetail() {
       className="text-base leading-7" />
 
       {/* 戻る */}
-      <a href="/" className="inline-block mt-8 text-blue-600 font-semibold hover:underline">
-      記事一覧へ戻る</a>
+      <Link to="/" className="inline-block mt-8 text-blue-600 font-semibold hover:underline">
+      記事一覧へ戻る</Link>
     </div>
   )
 }

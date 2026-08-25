@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import CategoryTag from "./CategoryTag";
 
 // 記事情報
 export default function PostCard({ post }) {
@@ -22,10 +23,7 @@ export default function PostCard({ post }) {
             {/* カテゴリタグ */}
             <div>
               {categories.map((categorie) => (
-                <span key={categorie} 
-                className="inline-block text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded mr-1">
-                  {categorie}
-                </span>
+                <CategoryTag key={categorie} categorie={categorie} />
               ))}
             </div>
           </div>
