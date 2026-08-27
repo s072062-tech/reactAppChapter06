@@ -6,7 +6,7 @@ import CategoryTag from "../components/CategoryTag";
 export default function PostDetail() {
 
   const { id } = useParams();
-  const [ post, setPost ] = useState([]);
+  const [ post, setPost ] = useState(null);
   const [ loading, setLoading ] = useState(true);
   const [ error, setError ] = useState(null)
 
@@ -97,8 +97,7 @@ export default function PostDetail() {
       className="text-base leading-7" />
 
       {/* 戻る */}
-      <Link to="/" className="inline-block mt-8 text-blue-600 font-semibold hover:underline">
-      記事一覧へ戻る</Link>
+      {backLink}
     </div>
   )
 }
