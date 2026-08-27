@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import PostDetail from "./pages/PostDetail"
 import Layout from "./components/Layout"
+import Contact from "./pages/Contact"
 
 export default function App() {
   return (
@@ -11,7 +12,7 @@ export default function App() {
           <Routes >
             <Route path="/" element={<Home />} />
             <Route path="/posts/:id" element={<PostDetail />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </Layout>
       </BrowserRouter>

@@ -6,7 +6,7 @@ export default function Header() {
     <header className="items-center px-4 py-3 bg-gray-800 text-white">
       <nav className="flex justify-between gap-4">
         <Link to="/" className="hover:underline">Blog</Link>
-        <Link to="" className="hover:underline">お問い合わせ</Link>
+        <Link to="/contact" className="hover:underline">お問い合わせ</Link>
       </nav>
     </header>
   )
