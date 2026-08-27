@@ -1,19 +1,70 @@
 import { Link, useParams } from "react-router-dom";
-import { posts } from "../data/posts"
+import { useEffect, useState } from "react";
 import CategoryTag from "../components/CategoryTag";
 
 // 記事詳細
 export default function PostDetail() {
 
   const { id } = useParams();
-  const post = posts.find((data) => data.id === Number(id));
+  const [ post, setPost ] = useState(null);
+  const [ loading, setLoading ] = useState(true);
+  const [ error, setError ] = useState(null)
 
+  const backLink = <Link to="/" className="inline-block mt-8 text-blue-600 font-semibold hover:underline">
+      記事一覧へ戻る</Link>;
+
+  // 記事詳細取得
+  useEffect(() => {
+    const fetcher = async () => {
+
+      try {
+        const res = await fetch(`https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`);
+
+        if (!res.ok) throw new Error('Failed to fetch posts')
+
+        const { post } = await res.json();
+        setPost(post);  
+      } catch {
+        setError('記事の取得に失敗しました。')
+      } finally {
+        setLoading(false);
+      }
+      
+    };
+        
+    fetcher();
+  }, []);
+
+  // 読み込み中表示
+  if(loading) {
+    return (
+      <p className="text-center text-gray-500 py-12">
+        記事を読み込み中です...
+      </p>
+    )
+  }
+
+  // エラー表示
+  if(error) {
+    return (
+      <div>
+        <p className="text-center text-gray-500 py-12">
+          {error}
+        </p>
+        {backLink}
+      </div>
+    )
+  }
+  
   // 記事がない場合はメッセージを表示
   if(!post) {
     return (
-      <p className="text-center text-gray-500 py-12">
-        記事が見つかりませんでした
-      </p>
+      <div>
+        <p className="text-center text-gray-500 py-12">
+          記事が見つかりませんでした
+        </p>
+        {backLink}
+      </div>
     )
   }
 
@@ -46,8 +97,7 @@ export default function PostDetail() {
       className="text-base leading-7" />
 
       {/* 戻る */}
-      <Link to="/" className="inline-block mt-8 text-blue-600 font-semibold hover:underline">
-      記事一覧へ戻る</Link>
+      {backLink}
     </div>
   )
 }
