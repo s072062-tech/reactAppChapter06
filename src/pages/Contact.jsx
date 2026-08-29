@@ -87,7 +87,9 @@ export default function Contact() {
           <label className="w-32 shrink-0 text-sm font-medium">お名前</label>
           <div className="w-full">
             <input
-              type="text" value={name} onChange={(e) => setName(e.target.value)}
+              type="text" value={name} 
+              onChange={(e) => setName(e.target.value)} 
+              disabled={isSubmitting}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.name && (
@@ -100,7 +102,9 @@ export default function Contact() {
           <label className="w-32 shrink-0 text-sm font-medium">メールアドレス</label>
           <div className="w-full">
             <input
-              type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+              type="email" value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              disabled={isSubmitting} 
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.email && (
@@ -113,7 +117,9 @@ export default function Contact() {
           <label className="w-32 shrink-0 text-sm font-medium pt-2">本文</label>
           <div className="w-full">
             <textarea
-              value={message} onChange={(e) => setMessage(e.target.value)}
+              value={message} 
+              onChange={(e) => setMessage(e.target.value)} 
+              disabled={isSubmitting}
               className="w-full h-40 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.message && (
@@ -123,10 +129,12 @@ export default function Contact() {
         </div>
         {/* ボタン */}
         <div className="flex justify-center gap-4 pt-4">
-          <button type="submit" disabled={isSubmitting} 
+          <button type="submit" 
+          disabled={isSubmitting} 
           className="w-24 px-6 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700 disabled:bg-gray-400">
           送信</button>
-          <button type="button" onClick={handleClear}
+          <button type="button" onClick={handleClear} 
+          disabled={isSubmitting}
           className="w-24 px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
           クリア</button>
         </div>
